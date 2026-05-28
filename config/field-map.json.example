@@ -1,0 +1,10 @@
+{
+  "club_name": {
+    "サッカー部": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "野球部":     "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+  },
+  "event_type": {
+    "試合": "zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz",
+    "練習": "wwwwwwww-wwww-wwww-wwww-wwwwwwwwwwww"
+  }
+}
