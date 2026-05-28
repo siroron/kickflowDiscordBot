@@ -1,0 +1,8 @@
+{
+  "fields": [
+    { "label": "クラブ名",   "code": "club_name",    "type": "master",    "required": true },
+    { "label": "行事の種類", "code": "event_type",   "type": "select",    "required": true },
+    { "label": "行事名",     "code": "event_name",   "type": "text",      "required": true },
+    { "label": "行事内容",   "code": "event_detail", "type": "text_long", "required": true }
+  ]
+}

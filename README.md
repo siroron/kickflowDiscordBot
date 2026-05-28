@@ -23,12 +23,14 @@ kickflow 上にチケットが作成される
 
 ポイントは送信の向きです。bot が kickflow に「チケットを作って」と命令を出すので、
 使うのは **REST API**（外部 → kickflow）であって、Webhook（kickflow → 外部）ではありません。
-Webhook は承認結果などを後から Discord に通知したくなった場合に追加する想定です。
+
+> Webhook（承認結果を後から Discord に通知する用途）はユーザー権限で設定できないため、
+> 現状このリポジトリの対象外です。必要になった場合は kickflow 管理者へ依頼してください。
 
 ## 必要なもの
 
 ### kickflow 側
-- 管理者によるアクセストークンの発行
+- 自身のアカウントでアクセストークンを発行（ユーザー設定 →「アクセストークン設定」）
 - 対象ワークフロー「行事許可願」の `workflowId`
 - 申請者チームの `authorTeamId`
 - 各フォームフィールドの `code`
@@ -142,7 +144,7 @@ ID は kickflow のワークフロー管理画面、または REST API のフォ
 - [ ] 名前 → ID 変換テーブルの整備
 - [ ] kickflow チケット作成 API 連携
 - [ ] Discord への結果返信
-- [ ] （任意）Webhook 受信で承認結果を Discord 通知
+- [ ] （対象外）Webhook 受信で承認結果を Discord 通知 — ユーザー権限で kickflow Webhook を設定できないため保留
 
 ## 参考
 
