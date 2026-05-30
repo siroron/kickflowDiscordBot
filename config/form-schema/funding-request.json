@@ -1,0 +1,10 @@
+{                                                                                                                                                                                                                                               
+    "fields": [                                                                                                                                                                                                                                   
+      { "label": "出金依頼書No.",   "code": "number",          "type": "text",   "required": true },
+      { "label": "URL",            "code": "DriveURL",        "type": "text",   "required": true },                                                                                                                                               
+      { "label": "入金スケジュール", "code": "paymentSchedule", "type": "master", "required": false },
+      { "label": "クラブ",         "code": "clubBudget",      "type": "master", "required": true },
+      { "label": "出金依頼総額",   "code": "TotalExpence",    "type": "text",   "required": true },                                                                                                                                               
+      { "label": "クラブ名",       "code": "shoninMaster",    "type": "master", "required": true }
+    ]                                                                                                                                                                                                                                             
+  }

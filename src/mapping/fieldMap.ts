@@ -11,6 +11,7 @@ export function loadFieldMap(path: string): FieldMap {
 
 export interface ResolvedInput {
   formFieldCode: string;
+  kind: "master" | "value";
   value: string | null;
 }
 
@@ -39,9 +40,10 @@ export function resolveInputs(
   for (const field of schema.fields) {
     const raw = parsed.fields[field.label];
     const trimmed = raw?.trim() ?? "";
+    const kind: ResolvedInput["kind"] = field.type === "master" ? "master" : "value";
 
     if (trimmed === "") {
-      inputs.push({ formFieldCode: field.code, value: null });
+      inputs.push({ formFieldCode: field.code, kind, value: null });
       continue;
     }
 
@@ -58,9 +60,9 @@ export function resolveInputs(
         });
         continue;
       }
-      inputs.push({ formFieldCode: field.code, value: resolved });
+      inputs.push({ formFieldCode: field.code, kind, value: resolved });
     } else {
-      inputs.push({ formFieldCode: field.code, value: raw ?? null });
+      inputs.push({ formFieldCode: field.code, kind, value: raw ?? null });
     }
   }
 

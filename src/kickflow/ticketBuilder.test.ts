@@ -4,14 +4,14 @@ import { buildCreateTicketPayload } from "./ticketBuilder.js";
 
 describe("buildCreateTicketPayload", () => {
   const inputs: ResolvedInput[] = [
-    { formFieldCode: "club_name", value: "club-soccer-id" },
-    { formFieldCode: "event_type", value: "event-match-id" },
-    { formFieldCode: "event_name", value: "〇〇大会" },
-    { formFieldCode: "event_detail", value: "本文" },
-    { formFieldCode: "remarks", value: null },
+    { formFieldCode: "club_name", kind: "master", value: "club-soccer-id" },
+    { formFieldCode: "event_type", kind: "value", value: "event-match-id" },
+    { formFieldCode: "event_name", kind: "value", value: "〇〇大会" },
+    { formFieldCode: "event_detail", kind: "value", value: "本文" },
+    { formFieldCode: "remarks", kind: "value", value: null },
   ];
 
-  it("assembles the kickflow create-ticket payload", () => {
+  it("assembles the kickflow create-ticket payload (master → generalMasterItemId)", () => {
     const payload = buildCreateTicketPayload({
       workflowId: "wf-1",
       authorTeamId: "team-1",
@@ -26,7 +26,7 @@ describe("buildCreateTicketPayload", () => {
       authorTeamId: "team-1",
       title: "情報学部自治会に関する行事許可願",
       inputs: [
-        { formFieldCode: "club_name", value: "club-soccer-id" },
+        { formFieldCode: "club_name", generalMasterItemId: "club-soccer-id" },
         { formFieldCode: "event_type", value: "event-match-id" },
         { formFieldCode: "event_name", value: "〇〇大会" },
         { formFieldCode: "event_detail", value: "本文" },
@@ -44,5 +44,15 @@ describe("buildCreateTicketPayload", () => {
       inputs: [],
     });
     expect(payload.status).toBe("in_progress");
+  });
+
+  it("omits title when not provided (for workflows with titleInputMode != input)", () => {
+    const payload = buildCreateTicketPayload({
+      workflowId: "wf-1",
+      authorTeamId: "team-1",
+      status: "draft",
+      inputs: [],
+    });
+    expect("title" in payload).toBe(false);
   });
 });

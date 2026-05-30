@@ -1,0 +1,12 @@
+{                                                         
+    "行事許可願": {                       
+      "workflowId": "87f9b578-1030-4f05-9af9-19634d5dd053",
+      "schemaPath": "config/form-schema/event-request.json",                                                                                                                                                                                      
+      "fieldMapPath": "config/field-map/event-request.json" 
+    },                                                                                                                                                                                                                                            
+    "課外活動育成費出金依頼書": {                           
+      "workflowId": "cacb314d-ee6f-40f2-b927-e852e6487b44",                                                                                                                                                                                       
+      "schemaPath": "config/form-schema/funding-request.json",
+      "fieldMapPath": "config/field-map/funding-request.json"                                                                                                                                                                                     
+    }                                                        
+  }

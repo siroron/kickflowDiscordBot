@@ -44,11 +44,11 @@ describe("resolveInputs", () => {
     expect(result.ok).toBe(true);
     expect(result.errors).toEqual([]);
     expect(result.inputs).toEqual([
-      { formFieldCode: "club_name", value: "club-soccer-id" },
-      { formFieldCode: "event_type", value: "event-match-id" },
-      { formFieldCode: "event_name", value: "〇〇大会" },
-      { formFieldCode: "event_detail", value: "本文" },
-      { formFieldCode: "remarks", value: null },
+      { formFieldCode: "club_name", kind: "master", value: "club-soccer-id" },
+      { formFieldCode: "event_type", kind: "value", value: "event-match-id" },
+      { formFieldCode: "event_name", kind: "value", value: "〇〇大会" },
+      { formFieldCode: "event_detail", kind: "value", value: "本文" },
+      { formFieldCode: "remarks", kind: "value", value: null },
     ]);
   });
 
@@ -56,11 +56,11 @@ describe("resolveInputs", () => {
     const result = resolveInputs(form({}), schema, fieldMap);
     expect(result.ok).toBe(true);
     expect(result.inputs).toEqual([
-      { formFieldCode: "club_name", value: null },
-      { formFieldCode: "event_type", value: null },
-      { formFieldCode: "event_name", value: null },
-      { formFieldCode: "event_detail", value: null },
-      { formFieldCode: "remarks", value: null },
+      { formFieldCode: "club_name", kind: "master", value: null },
+      { formFieldCode: "event_type", kind: "value", value: null },
+      { formFieldCode: "event_name", kind: "value", value: null },
+      { formFieldCode: "event_detail", kind: "value", value: null },
+      { formFieldCode: "remarks", kind: "value", value: null },
     ]);
   });
 
@@ -89,6 +89,7 @@ describe("resolveInputs", () => {
     expect(result.inputs.find((i) => i.formFieldCode === "club_name")).toBeUndefined();
     expect(result.inputs.find((i) => i.formFieldCode === "event_type")).toEqual({
       formFieldCode: "event_type",
+      kind: "value",
       value: "event-match-id",
     });
   });
@@ -105,7 +106,7 @@ describe("resolveInputs", () => {
       fieldMap,
     );
     expect(result.ok).toBe(true);
-    expect(result.inputs[0]).toEqual({ formFieldCode: "club_name", value: "club-soccer-id" });
+    expect(result.inputs[0]).toEqual({ formFieldCode: "club_name", kind: "master", value: "club-soccer-id" });
   });
 
   it("ignores parsed keys that are not in the schema", () => {
