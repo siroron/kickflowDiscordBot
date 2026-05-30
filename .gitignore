@@ -12,6 +12,7 @@ dist/
 
 # config containing real kickflow IDs (only *.example.json is committed)
 config/field-map.json
+config/field-map/*.json
 
 # logs
 *.log
