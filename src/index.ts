@@ -16,6 +16,30 @@ discordClient.on(Events.MessageCreate, (message) => {
   });
 });
 
+discordClient.on(Events.Error, (err) => {
+  logger.error("Discord client error:", err);
+});
+
+discordClient.on(Events.ShardError, (err, shardId) => {
+  logger.error(`Shard ${shardId} error:`, err);
+});
+
+discordClient.on(Events.ShardDisconnect, (event, shardId) => {
+  logger.warn(`Shard ${shardId} disconnected (code=${event.code})`);
+});
+
+discordClient.on(Events.ShardReconnecting, (shardId) => {
+  logger.info(`Shard ${shardId} reconnecting...`);
+});
+
+discordClient.on(Events.ShardResume, (shardId, replayedEvents) => {
+  logger.info(`Shard ${shardId} resumed (replayed ${replayedEvents} events)`);
+});
+
+process.on("unhandledRejection", (reason) => {
+  logger.error("Unhandled promise rejection:", reason);
+});
+
 discordClient.login(config.discordBotToken).catch((err) => {
   logger.error("Failed to login to Discord:", err);
   process.exit(1);
